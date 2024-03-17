@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\VacationPlan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -12,10 +13,9 @@ class VacationPlanController extends Controller
      */
     public function index(Request $request)
     {
-        $user = Auth::user();
         return response()->json([
             'Successful'=>true,
-            'data'=>$user
+            'data'=>VacationPlan::all()
         ]);
     }
 
@@ -32,7 +32,17 @@ class VacationPlanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $vacationPlan = new VacationPlan;
+        $vacationPlan->title = $request->title;
+        $vacationPlan->description = $request->description;
+        $vacationPlan->date = $request->date;
+        $vacationPlan->location = $request->location;
+        $vacationPlan->participants = $request->participants;
+        $vacationPlan->save();
+        return response()->json([
+            'successful'=>true,
+            'data'=>$vacationPlan
+        ]);
     }
 
     /**
@@ -40,7 +50,10 @@ class VacationPlanController extends Controller
      */
     public function show(string $id)
     {
-        //
+        return response()->json([
+            'Successful'=>true,
+            'data'=>VacationPlan::find($id)
+        ]);
     }
 
     /**
@@ -56,7 +69,17 @@ class VacationPlanController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $vacationPlan = VacationPlan::find($id);
+        $vacationPlan->title = $request->title;
+        $vacationPlan->description = $request->description;
+        $vacationPlan->date = $request->date;
+        $vacationPlan->location = $request->location;
+        $vacationPlan->participants = $request->participants;
+        $vacationPlan->save();
+        return response()->json([
+            'successful'=>true,
+            'data'=>$vacationPlan
+        ]);
     }
 
     /**
@@ -64,6 +87,10 @@ class VacationPlanController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $vacationPlan = VacationPlan::find($id);
+        $vacationPlan->delete();
+        return response()->json([
+            'Successful' => true
+        ]);
     }
 }
