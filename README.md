@@ -13,11 +13,11 @@ This project has been made using Docker so it's more convinient to get it up and
 
 1. Clone the repo.
 2. Run
-    '''bash
+    '''shell
     composer update
     '''
 3. Run
-    '''bash
+    '''shell
     ./vendor/bin/sail up -d
     '''
 4. Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
