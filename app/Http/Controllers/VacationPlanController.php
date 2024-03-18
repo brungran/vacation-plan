@@ -131,7 +131,13 @@ class VacationPlanController extends Controller
      */
     public function pdf(string $id)
     {
-        $vacationPlan = VacationPlan::find($id);
+        if(!$vacationPlan = VacationPlan::find($id)){
+            return response()->json([
+                'Successful'=>false,
+                'message'=> 'Vacation plan not found.'
+            ]);
+        };
+        
         $vacationPlan->date = Carbon::parse($vacationPlan->date);
         
         // Pdf::view('pdf.vacationPlan')->save('./plan.pdf');
