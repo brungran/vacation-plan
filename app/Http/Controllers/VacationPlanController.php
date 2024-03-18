@@ -16,9 +16,13 @@ class VacationPlanController extends Controller
      */
     public function index(Request $request)
     {
+        $request->validate([
+            'per_page'=>['sometimes','nullable', 'integer'],
+        ]);
+        
         return response()->json([
             'Successful'=>true,
-            'returned'=>VacationPlan::simplePaginate(15)
+            'returned'=>VacationPlan::simplePaginate($request->per_page)
         ]);
     }
 
@@ -56,9 +60,16 @@ class VacationPlanController extends Controller
      */
     public function show(string $id)
     {
+        if(!$vacationPlan = VacationPlan::find($id)){
+            return response()->json([
+                'Successful'=>false,
+                'message'=> 'Vacation plan not found.'
+            ]);
+        };
+        
         return response()->json([
             'Successful'=>true,
-            'data'=>VacationPlan::find($id)
+            'data'=>$vacationPlan
         ]);
     }
 
@@ -83,7 +94,12 @@ class VacationPlanController extends Controller
             'participants'=>['nullable','sometimes','string'],
         ]);
         
-        $VacationPlan = VacationPlan::find($id);
+        if(!$VacationPlan = VacationPlan::find($id)){
+            return response()->json([
+                'successful'=>false,
+                'message'=> 'Vacation plan not found.'
+            ]);
+        }
         $VacationPlan->update($request->all());
 
         return response()->json([
@@ -97,7 +113,13 @@ class VacationPlanController extends Controller
      */
     public function destroy(string $id)
     {
-        $vacationPlan = VacationPlan::find($id);
+        if(!$vacationPlan = VacationPlan::find($id)){
+            return response()->json([
+                'Successful'=>false,
+                'message'=> 'Vacation plan not found.'
+            ]);
+        };
+        
         $vacationPlan->delete();
         return response()->json([
             'Successful' => true
