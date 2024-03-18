@@ -21,10 +21,32 @@ This project has been made using Docker so it's more convinient to get it up and
     ./vendor/bin/sail up -d
     ```
     You might need to disable whatever is running on port 80, wich is usually apache2.
-4. Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-5. Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-6. [Robust background job processing](https://laravel.com/docs/queues).
-7. [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+4. Run
+    ```sh
+    ./vendor/bin/sail artisan migrate:refresh --seed
+    ```
+5. Run
+    ```sh
+    ./vendor/bin/sail artisan install:api --passport
+    ```
+6. Run
+    ```sh
+    ./vendor/bin/sail artisan passport:client --personal
+    ```
+    Set PASSPORT_PERSONAL_ACCESS_CLIENT_ID and PASSPORT_PERSONAL_ACCESS_CLIENT_SECRET properties in the *.env* file.
+7. Open **vendor/spatie/browsershot/src/Browsershot.php** and set *protected bool $noSandbox* to *true*
+8. Run
+    ```sh
+    ./vendor/bin/sail npm install
+    ```
+9. Run
+    ```sh
+    ./vendor/bin/sail npx puppeteer browsers install chrome
+    ```
+10. Run
+    ```sh
+    ./vendor/bin/sail npm run dev
+    ```
 
 Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
