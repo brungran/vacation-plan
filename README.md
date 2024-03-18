@@ -52,5 +52,4 @@ This project has been made using Docker so it's more convinient to get it up and
 API docs can be found in localhost/apidocs.
 
 ## See it in Action
-https://youtu.be/_WYyCUH1GOo[https://youtu.be/_WYyCUH1GOo]
-<iframe width="951" height="535" src="https://www.youtube.com/embed/_WYyCUH1GOo" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+https://youtu.be/_WYyCUH1GOo[<iframe width="951" height="535" src="https://www.youtube.com/embed/_WYyCUH1GOo" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>]
