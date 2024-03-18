@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\VacationPlan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Spatie\LaravelPdf\Facades\Pdf;
+use function Spatie\LaravelPdf\Support\pdf;
 
 class VacationPlanController extends Controller
 {
@@ -92,5 +94,17 @@ class VacationPlanController extends Controller
         return response()->json([
             'Successful' => true
         ]);
+    }
+
+    /**
+     * Generate a PDF file for the specified vacation plan.
+     */
+    public function pdf(string $id)
+    {
+        // Pdf::view('pdf.vacationPlan')->save('./plan.pdf');
+        return pdf()
+            ->view('pdf.vacationPlan', compact('id'))
+            ->name('plan.pdf');
+            // ->download();
     }
 }
