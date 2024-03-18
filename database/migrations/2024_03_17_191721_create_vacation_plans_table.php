@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('vacation_plans', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('description');
+            $table->longText('description');
             $table->date('date');
             $table->string('location');
-            $table->string('participants')->nullable();
+            $table->integer('participants')->nullable();
             $table->timestamps();
         });
     }

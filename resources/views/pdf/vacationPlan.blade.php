@@ -18,7 +18,7 @@
         <div class="my-40 pl-3">
             <p class="pb-3"><span class="font-bold">Title:</span> {{$vacationPlan->title}}</p>
             <p class="pb-3"><span class="font-bold">Description:</span> {{$vacationPlan->description}}</p>
-            <p class="pb-3"><span class="font-bold">Date:</span> {{$vacationPlan->date->format('F d/Y')}}</p>
+            <p class="pb-3"><span class="font-bold">Date:</span> {{$vacationPlan->date->format('F d, Y')}}</p>
             <p class="pb-3"><span class="font-bold">Location:</span> {{$vacationPlan->location}}</p>
             @if ($vacationPlan->participants)
                 <p class="pb-3"><span class="font-bold">Participants:</span> {{$vacationPlan->participants}}</p>

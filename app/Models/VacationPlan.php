@@ -10,6 +10,10 @@ class VacationPlan extends Model
     use HasFactory;
 
     protected $fillable = [
+        'title',
+        'description',
+        'date',
+        'location',
         'participants'
     ];
 }

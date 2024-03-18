@@ -18,7 +18,7 @@ class VacationPlanController extends Controller
     {
         return response()->json([
             'Successful'=>true,
-            'data'=>VacationPlan::all()
+            'returned'=>VacationPlan::simplePaginate(15)
         ]);
     }
 
@@ -35,16 +35,19 @@ class VacationPlanController extends Controller
      */
     public function store(Request $request)
     {
-        $vacationPlan = new VacationPlan;
-        $vacationPlan->title = $request->title;
-        $vacationPlan->description = $request->description;
-        $vacationPlan->date = $request->date;
-        $vacationPlan->location = $request->location;
-        $vacationPlan->participants = $request->participants;
-        $vacationPlan->save();
+        $request->validate([
+            'title'=>['required','string'],
+            'description'=>['required','string'],
+            'date'=>['required','date', 'after_or_equal:today', 'date_format:Y-m-d'],
+            'location'=>['required','string'],
+            'participants'=>['nullable','sometimes','string'],
+        ]);
+        
+        VacationPlan::create($request->all());
+        
         return response()->json([
             'successful'=>true,
-            'data'=>$vacationPlan
+            'data'=>VacationPlan::latest()->first()->toArray()
         ]);
     }
 
@@ -72,16 +75,20 @@ class VacationPlanController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $vacationPlan = VacationPlan::find($id);
-        $vacationPlan->title = $request->title;
-        $vacationPlan->description = $request->description;
-        $vacationPlan->date = $request->date;
-        $vacationPlan->location = $request->location;
-        $vacationPlan->participants = $request->participants;
-        $vacationPlan->save();
+        $request->validate([
+            'title'=>['sometimes','string'],
+            'description'=>['sometimes','string'],
+            'date'=>['sometimes','date', 'after_or_equal:today', 'date_format:Y-m-d'],
+            'location'=>['sometimes','string'],
+            'participants'=>['nullable','sometimes','string'],
+        ]);
+        
+        $VacationPlan = VacationPlan::find($id);
+        $VacationPlan->update($request->all());
+
         return response()->json([
             'successful'=>true,
-            'data'=>$vacationPlan
+            'data'=>VacationPlan::find($id)->toArray()
         ]);
     }
 

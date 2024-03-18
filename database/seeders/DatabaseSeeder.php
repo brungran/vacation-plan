@@ -21,6 +21,6 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@example.com',
         ]); */
 
-        VacationPlan::factory(5)->create();
+        VacationPlan::factory(100)->create();
     }
 }
