@@ -51,5 +51,5 @@ This project has been made using Docker so it's more convinient to get it up and
 ## API Documentation
 API docs can be found in localhost/apidocs.
 
-## See it in Action[https://youtu.be/_WYyCUH1GOo]
-https://youtu.be/_WYyCUH1GOo[https://youtu.be/_WYyCUH1GOo]
+## [See it in Action](https://youtu.be/_WYyCUH1GOo)
+[https://youtu.be/_WYyCUH1GOo](https://youtu.be/_WYyCUH1GOo)
