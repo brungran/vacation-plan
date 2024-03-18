@@ -19,7 +19,7 @@ class VacationPlanFactory extends Factory
         return [
             'title'=>$this->faker->sentence(),
             'description'=>$this->faker->paragraph(),
-            'date'=>$this->faker->date('Y_m_d'),
+            'date'=>$this->faker->dateTimeThisYear('+ 3 months'),
             'location'=>$this->faker->city(),
             'participants'=>$this->faker->boolean() ? $this->faker->numberBetween(1, 10) : null
         ];

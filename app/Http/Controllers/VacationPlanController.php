@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Spatie\LaravelPdf\Facades\Pdf;
 use function Spatie\LaravelPdf\Support\pdf;
+use Carbon\Carbon;
 
 class VacationPlanController extends Controller
 {
@@ -101,9 +102,12 @@ class VacationPlanController extends Controller
      */
     public function pdf(string $id)
     {
+        $vacationPlan = VacationPlan::find($id);
+        $vacationPlan->date = Carbon::parse($vacationPlan->date);
+        
         // Pdf::view('pdf.vacationPlan')->save('./plan.pdf');
         return pdf()
-            ->view('pdf.vacationPlan', compact('id'))
+            ->view('pdf.vacationPlan', compact('vacationPlan'))
             ->name('plan.pdf');
             // ->download();
     }
