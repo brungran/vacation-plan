@@ -20,6 +20,7 @@ This project has been made using Docker so it's more convinient to get it up and
     ```sh
     ./vendor/bin/sail up -d
     ```
+    You might need to disable whatever is running on port 80, wich is usually apache2.
 4. Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
 5. Database agnostic [schema migrations](https://laravel.com/docs/migrations).
 6. [Robust background job processing](https://laravel.com/docs/queues).
